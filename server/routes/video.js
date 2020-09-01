@@ -53,7 +53,21 @@ router.post('/uploadVideo', (req, res) => {
             res.status(200).json({ success : true })
         }
     });
-    
+
+})
+
+router.get('/getVideos', (req, res) => {
+
+    // 비디오를 DB에서 가져와서 클라이언트에 전송.
+    Video.find()  // Video Collection 안에 있는 모든 비디오를 가져온다.
+        .populate('writer')  // populate를 통해서 모든 user 정보를 가져온다
+        .exec((err, videos) => {
+            if(err){
+                return res.status(400).send(err);
+            }else{
+                res.status(200).json({ success : true, videos })
+            }
+        })
 })
 
 router.post('/thumbnail', (req, res) => {
