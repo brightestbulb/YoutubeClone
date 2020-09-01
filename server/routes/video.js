@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const { Video } = require("../models/Video");
+const { Video } = require("../models/Video");
 
 const { auth } = require("../middleware/auth");
 const multer = require('multer');  // 노드 서버에 파일을 저장하기 위해 사용
@@ -40,6 +40,20 @@ router.post('/uploadfiles', (req, res) => {
             return res.json({success : true, url : res.req.file.path, fileName : res.req.file.filename})
         }
     })
+})
+
+router.post('/uploadVideo', (req, res) => {
+
+    // 비디오를 DB에 저장한다.
+    const video = new Video(req.body);
+    video.save((err, doc) => {  // save() : mongo DB Function
+        if(err) {
+            return res.json({ success : false, err })
+        }else{
+            res.status(200).json({ success : true })
+        }
+    });
+    
 })
 
 router.post('/thumbnail', (req, res) => {
