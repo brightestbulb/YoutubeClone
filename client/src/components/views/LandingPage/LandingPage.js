@@ -28,23 +28,21 @@ function LandingPage() {
 
         // video.duration는 전체 시간 초로 구성
         var minutes = Math.floor(video.duration/60);
-        var seconds = Math.floor((video.duration - minutes * 60));
+        var seconds = Math.floor(video.duration - minutes * 60);
 
         return <Col lg={6} md={8} xs={24}>  {/* 화면 전체는 24 사이즈, lg:4개, md:3개, xs:1개 */}
-        <a href={`/video/post/${video._id}`}>
             <div style={{ position:'relative'}}>
-                <img style={{ width: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail"/>
-                <div className="duration">
-                    <span>{minutes} : {seconds}</span>
-                </div>
+                <a href={`/video/${video._id}`} >
+                    <img style={{ width: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail"/>
+                    <div className="duration">
+                        <span>{minutes} : {seconds}</span>
+                    </div>
+                </a>
             </div>
-        </a>
-
         <br />
         <Meta 
             avatar={<Avatar src={video.writer.image} />}        
-            title={video.title} 
-            description=""
+            title={video.title}
         />
         <span>{video.writer.name}</span><br />
         <span style={{ marginLeft: '3rem' }}>{video.views} views<span> - </span>{moment(video.createdAt).format("MMM Do YY")}</span>
