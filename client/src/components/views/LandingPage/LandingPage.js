@@ -31,7 +31,7 @@ function LandingPage() {
         var seconds = Math.floor(video.duration - minutes * 60);
 
         return <Col lg={6} md={8} xs={24}>  {/* 화면 전체는 24 사이즈, lg:4개, md:3개, xs:1개 */}
-            <div style={{ position:'relative'}}>
+            <div key={index} style={{ position:'relative'}}>
                 <a href={`/video/${video._id}`} >
                     <img style={{ width: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} alt="thumbnail"/>
                     <div className="duration">
