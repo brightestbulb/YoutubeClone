@@ -5,7 +5,6 @@ const { Video } = require("../models/Video");
 const { auth } = require("../middleware/auth");
 const multer = require('multer');  // 노드 서버에 파일을 저장하기 위해 사용
 const ffmpeg = require('fluent-ffmpeg');
-const { default: VideoDetailPage } = require('../../client/src/components/views/VideoDetailPage/VideoDetailPage');
 
 let storage = multer.diskStorage({
     // 파일을 저장할 경로 설정 ( uploads 폴더에 비디오 저장 )
@@ -72,14 +71,13 @@ router.get('/getVideos', (req, res) => {
 })
 
 router.post('/getVideoDetail', (req, res) => {
-    
     Video.findOne({ "_id" : req.body.videoId })
-        .populate('writer') // populate를 통해서 모든 정보를 가져온다
-        .exec((err, videoDetail) => {
+        .populate('writer')  // 모든 정보를 가져온다.
+        .exec((err, videoDetail)=>{
             if(err){
-                return res.status(400).send(err);
+                return res.status(400).send(err)
             }else{
-                res.status(200).json({ success:true, videoDetail })
+                res.status(200).json({ success : true, videoDetail })
             }
         })
 })
