@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col, List, Avatar } from 'antd';
 import Axios from 'axios';
 import SideVideo from './Sections/SideVideo.js';
+import Subscribe from './Sections/Subscribe.js';
 
 function VideoDetail(props) {
 
@@ -30,7 +31,7 @@ function VideoDetail(props) {
                         <video style={{width:'100%'}} src={`http://localhost:5000/${VideoDetail.filePath}`} controls />
     
                         <List.Item 
-                            actions
+                            actions={[<Subscribe userTo={VideoDetail.writer._id} />]}  // userTo라는 Props를 Subscribe 컴포넌트로 전달
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={VideoDetail.writer.image} />}

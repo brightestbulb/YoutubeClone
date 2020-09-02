@@ -35,6 +35,7 @@ app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));  // axios 요청이 들어오면 여기로 온 다음에 routes로 전달한다.
 app.use('/api/video', require('./routes/video'));
+app.use('/api/subscribe', require('./routes/subscribe'));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
